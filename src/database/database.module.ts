@@ -1,5 +1,4 @@
 import { Module, Global } from '@nestjs/common';
-import { Client } from 'pg';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Global()
@@ -20,22 +19,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       },
     }),
   ],
-  providers: [
-    {
-      provide: 'PG',
-      useFactory: () => {
-        const client = new Client({
-          user: 'root',
-          host: 'localhost',
-          database: 'my_db',
-          password: '123456',
-          port: 5432,
-        });
-        client.connect();
-        return client;
-      },
-    },
-  ],
-  exports: ['PG', TypeOrmModule],
+  exports: [TypeOrmModule],
 })
 export class DatabaseModule {}
