@@ -9,7 +9,6 @@ import {
 
 
 @Entity({ name: 'product' })
-@Index(['price', 'quantity'])
 export class Product {
   @PrimaryGeneratedColumn()
   id: number;
